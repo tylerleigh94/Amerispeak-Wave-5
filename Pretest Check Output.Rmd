@@ -1,0 +1,57 @@
+---
+title: "Pretest Check Output"
+author: "Tyler Leigh"
+date: "2/5/2020"
+output: html_document
+---
+``` {r, include=F}
+####Libraries####
+library(easypackages)
+libs<-c("haven", "readr", "tidyverse", "car")
+libraries(libs)
+####Read in the Data####
+dat <- read_sav("Pretest Data.sav")
+
+```
+
+# Frequencies
+
+Note: Response options appear in the first row and frequencies appear in the second row for each variable. Variables are named as they appear in the dataset and are separated by ---------
+
+```{r, echo=F}
+####Get out frequencies for all items####
+for(x in 1:238){
+  cat("-----------", "\n")
+  print(attributes(dat[,x])$names)
+  print(table(dat[,x]))
+  cat("\n", "\n")
+}
+```
+
+# Correlations
+
+Note: The variables being analyzed appear first in quotes, followed by the raw output of the correlation. P-value is in the second row of the output in line with t-values and degrees of freedom. The actual correlation is at the very bottom of the output for each set of variables.
+
+```{r, echo=F}
+
+print("Party ID and GUNS")
+cor.test(dat$P_PARTYID7, dat$GUNS)
+
+print("Party ID and HC5")
+cor.test(dat$P_PARTYID7, dat$HC5)
+
+print("Party ID and TRUMP1")
+cor.test(dat$P_PARTYID7, dat$TRUMP1)
+
+print("Party ID and THERMTRUMP")
+cor.test(dat$P_PARTYID7, dat$THERMTRUMP)
+
+print("Party ID and IDEO")
+cor.test(dat$P_PARTYID7, dat$P_IDEO)
+
+print("Party ID and GENMEDTRUST")
+cor.test(dat$P_PARTYID7, dat$GENMEDTRUST)
+
+
+```
+
